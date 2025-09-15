@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./main.js" defer></script>
+  <link rel="stylesheet" href="./style.css">
+  <title>Number Guessing Game</title>
+</head>
+<body>
+  <div class="number-guesser-wrapper">
+    <h1>Number Guessing Game</h1>
+    <hr>
+    <h2>Number Guessing Game Description:</h2>
+    <p>This is a simple interactive game where the computer randomly selects a number within a specified range (e.g., 1 to 100), and the player tries to guess it. The game provides feedback after each guess to guide the player:</p>
+    <ul>
+      <li class="warn-high">If the guess is too high, the game will notify the player that the number is lower.</li>
+      <li class="warn-low">If the guess is too low, the game will notify the player that the number is higher.</li>
+      <li class="warn-correct">If the guess is correct, the game congratulates the player and shows the number of attempts taken.</li>
+    </ul>
+    <p>The game continues until the player correctly guesses the number. It also keeps track of the number of attempts and can optionally allow the player to restart for a new random number.</p>
+    <hr>
+    <form action="#" id="formInput">
+      <label for="guess">Guess</label>
+      <input type="number" id="guess" name="guess" required>
+      <button type="submit" id="submit">Submit Guess</button>
+    </form>
+    <div class="answer-box">
+    </div>
+
+    <div class="botton-warpper">
+      <button type="reset" id="reset-btn">Reset Game</button>
+    </div>
+
+  </div>
+
+
+</body>
+</html>

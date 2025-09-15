@@ -1,0 +1,60 @@
+h1{
+  text-align:center;
+}
+.number-guesser-wrapper{
+  width: 70%;
+  margin:2rem auto;
+  padding: 1rem;
+  border:1px solid rgb(223, 216, 216);
+  box-shadow:20px 15px 0;
+  border-radius:10px;
+}
+li{
+  padding:0.5rem;
+  width:80%;
+  list-style: "--->";
+}
+.warn-high{
+  background-color:rgb(248, 179, 167);
+
+}
+
+.warn-low{
+  background-color:rgba(206, 206, 70, 0.712);
+
+}
+
+.warn-correct{
+  background-color:rgba(108, 206, 108, 0.459);
+
+}
+
+#guess{
+  width:70%;
+  padding:0.5rem;
+}
+
+#submit{
+  padding:0.5rem;
+  width:15rem;
+}
+
+.botton-warpper{
+  display:flex;
+  justify-content: center;
+
+}
+
+#reset-btn{
+  padding:0.7rem;
+  background-color:rgb(75, 131, 163);
+  color:white;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+
+}
+
+.reset-btn:hover{
+  transform:scale(1.4)
+}
