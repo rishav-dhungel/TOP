@@ -52,10 +52,12 @@ function addBookToLibrary(book) {
     bookContainer.appendChild(div);
 }
 
+function renderBook(){
+  myLibrary.forEach(function(book){
+    addBookToLibrary(book);
+  })
+}
 
-myLibrary.forEach(function(book){
-  addBookToLibrary(book);
-})
 
 const addBookBtn = document.getElementById("add-book-btn");
 const dialog = document.getElementById("add-book-dialog");
@@ -65,10 +67,15 @@ const addBookForm = document.getElementById("add-book-form");
 addBookBtn.addEventListener("click", () => dialog.showModal());
 addBookForm.addEventListener("submit", function(event){
   event.preventDefault();
-
-  console.log(event);
-
+  formData = new FormData(addBookForm);
+  let book = new Book(formData.get("bookName"), formData.get("authorName"),formData.get("bookPages"), formData.get("readStatus"));
+  myLibrary.push(book);
+  console.log(book);
+  console.log(myLibrary);
+  renderBook();
 
 })
+
+renderBook();
 
 closeDialog.addEventListener("click", () => dialog.close());
