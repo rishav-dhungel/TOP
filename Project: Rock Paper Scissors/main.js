@@ -11,6 +11,7 @@ const playerScoreCard = document.getElementById("player-score");
 const computerScoreCard = document.getElementById("computer-score");
 const tieScoreCard = document.getElementById("tie-score");
 const turnLeftCard = document.getElementById('turn-left');
+const restartBtn = document.getElementById("restart-btn");
 
 
 cards.forEach(function getPlayerChoice(card){
@@ -91,3 +92,7 @@ function gameOver(){
 
   }
 }
+
+restartBtn.addEventListener("click", function(){
+  location.reload();
+})
