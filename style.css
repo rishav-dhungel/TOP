@@ -1,3 +1,87 @@
-h1{
+/* style.css */
+
+body {
+  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+.project-container {
+  background: #fff;
+  max-width: 700px;
+  margin: 40px auto;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(60, 60, 120, 0.15);
+  padding: 36px 32px 32px 32px;
+}
+
+h1 {
   text-align: center;
+  color: #2d3a4b;
+  margin-bottom: 24px;
+  letter-spacing: 2px;
+}
+
+.track {
+  margin-bottom: 32px;
+}
+
+h2 {
+  color: #4b6cb7;
+  border-left: 5px solid #4b6cb7;
+  padding-left: 12px;
+  margin-bottom: 14px;
+  font-size: 1.3em;
+}
+
+.project-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.project-list li {
+  background: #f7fafd;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  padding: 12px 18px;
+  font-size: 1.08em;
+  display: flex;
+  align-items: center;
+  transition: background 0.2s;
+}
+
+.project-list li:hover {
+  background: #e3eefd;
+}
+
+.project-list a {
+  color: #2d3a4b;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+  margin-right: 8px;
+}
+
+.project-list a:hover {
+  color: #4b6cb7;
+  text-decoration: underline;
+}
+
+.project-list li::after {
+  content: '';
+  flex: 1;
+}
+
+.project-list li:contains('✅') {
+  color: #3bb273;
+  font-weight: 600;
+}
+
+@media (max-width: 800px) {
+  .project-container {
+    max-width: 95vw;
+    padding: 18px 6vw;
+  }
 }
