@@ -1,3 +1,4 @@
+
 const cards = document.querySelectorAll(".cards");
 const choices = ["Rock", "Paper", "Scissor"];
 let initialTurn = 5;
@@ -27,19 +28,7 @@ function getComputerChoice(){
   return random;
 }
 
-/*
- * Plays a round of Rock Paper Scissors, updates scores and display.
- *
- * @param {string} playerChoice - The player's choice ("rock", "paper", or "scissor").
- * @param {string} computerChoice - The computer's choice ("rock", "paper", or "scissor").
- *
- * @global {number} playerScore - The player's current score (updated in this function).
- * @global {number} computerScore - The computer's current score (updated in this function).
- * @global {number} tieScore - The number of ties (updated in this function).
- * @global {number} initialTurn - The number of turns left (decremented in this function).
- *
- * @calls updateDisplay - Updates the UI with the latest choices and scores.
- */
+
 function playGame(playerChoice, computerChoice){
   if(playerChoice === computerChoice){
     tieScore += 1;
