@@ -3,7 +3,7 @@ h1{
   text-align:center;
 }
 
-.game-container,.score-board, .live-update-container{
+.game-container,.score-board{
   width:80%;
   margin:2rem auto;
   display:flex;
@@ -31,14 +31,8 @@ hr{
 }
 
 
-.player-score{
-  font-size: 2rem;
-}
-
-.computer-score{
-    font-size: 2rem;
-
-
+.player-score, .tie-score, .computer-score{
+  font-size:2rem;
 }
 
 .reset-btn-container{
@@ -60,4 +54,15 @@ hr{
   background-color: white;
   color:black;
 
+}
+
+.game-update-info{
+  font-size: 2rem;
+}
+
+#live-update-container{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
