@@ -44,7 +44,7 @@ function playGame(playerChoice, computerChoice){
     }else{
       computerScore += 1;
     }
-  }else if(playerChoice === "Scissor"){
+  }else if(playerChoice === "scissor"){
       if(computerChoice === "paper"){
         playerScore += 1;
       }else{
