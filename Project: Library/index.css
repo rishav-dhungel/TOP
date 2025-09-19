@@ -69,12 +69,26 @@ dialog{
     background-color:rgb(255, 223, 42);
     border-radius:1rem;
     box-shadow: 8px 7px 0;
-
-
-
 }
 
 input, select{
   width:70%;
   padding:0.5rem;
+}
+
+.toggle-read{
+  background:rgb(68, 116, 187);
+  color:white;
+  padding:10px;
+  border-radius: 10px;
+  cursor:pointer
+}
+
+.delete-btn{
+  background-color: rgb(94, 90, 141);
+  color:white;
+  padding:10px;
+  margin:1rem;
+  border-radius: 10px;
+
 }

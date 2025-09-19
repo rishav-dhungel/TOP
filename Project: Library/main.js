@@ -1,81 +1,94 @@
 const myLibrary = [
-  { title: "The Hobbit", author: "J.R.R. Tolkien", pages: 310, read: "Read" },
-  { title: "1984", author: "George Orwell", pages: 328, read: "Not Read" },
-  { title: "To Kill a Mockingbird", author: "Harper Lee", pages: 281, read: "Read" },
-  { title: "Pride and Prejudice", author: "Jane Austen", pages: 279, read: "Not Read" },
-  { title: "The Great Gatsby", author: "F. Scott Fitzgerald", pages: 180, read: "Read" },
-  { title: "Moby-Dick", author: "Herman Melville", pages: 635, read: "Not Read" },
-  { title: "War and Peace", author: "Leo Tolstoy", pages: 1225, read: "Not Read" },
-  { title: "The Catcher in the Rye", author: "J.D. Salinger", pages: 214, read: "Read" },
-  { title: "Brave New World", author: "Aldous Huxley", pages: 268, read: "Read" },
-  { title: "Crime and Punishment", author: "Fyodor Dostoevsky", pages: 671, read: "Not Read" },
-  { title: "The Lord of the Rings", author: "J.R.R. Tolkien", pages: 1178, read: "Read" },
-  { title: "The Alchemist", author: "Paulo Coelho", pages: 197, read: "Read" },
-  { title: "Don Quixote", author: "Miguel de Cervantes", pages: 863, read: "Not Read" },
-  { title: "The Odyssey", author: "Homer", pages: 541, read: "Read" },
-  { title: "Fahrenheit 451", author: "Ray Bradbury", pages: 194, read: "Not Read" }
+  { title: "The Hobbit", author: "J.R.R. Tolkien", pages: 310, read: true, id: crypto.randomUUID() },
+  { title: "1984", author: "George Orwell", pages: 328, read: false, id: crypto.randomUUID() },
+  { title: "To Kill a Mockingbird", author: "Harper Lee", pages: 281, read: true, id: crypto.randomUUID() },
+  { title: "Pride and Prejudice", author: "Jane Austen", pages: 279, read: false, id: crypto.randomUUID() },
+  { title: "The Great Gatsby", author: "F. Scott Fitzgerald", pages: 180, read: true, id: crypto.randomUUID() },
 ];
 
-
-
 function Book(title, author, pages, read) {
-  // the constructor...
+  this.id = crypto.randomUUID();
   this.title = title;
   this.author = author;
   this.pages = pages;
-  this.read = read;
+  this.read = read === "true" || read === true; // normalize to boolean
 }
 
-const book2 = new Book("1984", "George Orwell", 328, false);
 const bookContainer = document.querySelector(".book-container");
 
 function addBookToLibrary(book) {
-  // take params, create a book then store it in the array
-    let div = document.createElement("div");
-    div.className = "book-box"
+  const div = document.createElement("div");
+  div.className = "book-box";
+  div.setAttribute("data-id", book.id);
 
-    let titleP = document.createElement("p");
-    let authorP = document.createElement("p");
-    let pagesP = document.createElement("p");
-    let readP = document.createElement("p");
+  const titleP = document.createElement("p");
+  titleP.innerText = `Title: ${book.title}`;
 
-    titleP.innerText = "Title: " + book.title;
-    authorP.innerText = "Author: " +book.author;
-    pagesP.innerText = "Pages: " +book.pages;
-    readP.innerText = "Read Status: " +book.read;
+  const authorP = document.createElement("p");
+  authorP.innerText = `Author: ${book.author}`;
 
-    div.appendChild(titleP);
-    div.appendChild(authorP);
-    div.appendChild(pagesP);
-    div.appendChild(readP);
+  const pagesP = document.createElement("p");
+  pagesP.innerText = `Pages: ${book.pages}`;
 
-    bookContainer.appendChild(div);
+  const readBtn = document.createElement("button");
+  readBtn.className = "toggle-read";
+  readBtn.setAttribute("data-id", book.id);
+  readBtn.innerText = `Status: ${book.read ? "Read" : "Not Read"}`;
+
+  const deleteBtn = document.createElement("button");
+  deleteBtn.className = "delete-btn";
+  deleteBtn.setAttribute("data-id", book.id);
+  deleteBtn.textContent = "🗑️";
+
+  div.append(titleP, authorP, pagesP, readBtn, deleteBtn);
+  bookContainer.appendChild(div);
 }
 
-function renderBook(){
-  myLibrary.forEach(function(book){
-    addBookToLibrary(book);
-  })
+function renderBooks() {
+  bookContainer.innerHTML = ""; // clear before rendering
+  myLibrary.forEach(addBookToLibrary);
 }
 
+// Event delegation for toggle + delete
+bookContainer.addEventListener("click", function (e) {
+  const id = e.target.getAttribute("data-id");
+  if (!id) return;
 
+  if (e.target.classList.contains("toggle-read")) {
+    const book = myLibrary.find((b) => b.id === id);
+    book.read = !book.read;
+    renderBooks();
+  }
+
+  if (e.target.classList.contains("delete-btn")) {
+    const index = myLibrary.findIndex((b) => b.id === id);
+    if (index > -1) myLibrary.splice(index, 1);
+    renderBooks();
+  }
+});
+
+// Dialog + form
 const addBookBtn = document.getElementById("add-book-btn");
 const dialog = document.getElementById("add-book-dialog");
 const closeDialog = document.getElementById("close-add-book-dialog");
 const addBookForm = document.getElementById("add-book-form");
 
 addBookBtn.addEventListener("click", () => dialog.showModal());
-addBookForm.addEventListener("submit", function(event){
-  event.preventDefault();
-  formData = new FormData(addBookForm);
-  let book = new Book(formData.get("bookName"), formData.get("authorName"),formData.get("bookPages"), formData.get("readStatus"));
-  myLibrary.push(book);
-  console.log(book);
-  console.log(myLibrary);
-  renderBook();
-
-})
-
-renderBook();
-
 closeDialog.addEventListener("click", () => dialog.close());
+
+addBookForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+  const formData = new FormData(addBookForm);
+  const book = new Book(
+    formData.get("bookName"),
+    formData.get("authorName"),
+    formData.get("bookPages"),
+    formData.get("readStatus")
+  );
+  myLibrary.push(book);
+  renderBooks();
+  dialog.close();
+  addBookForm.reset();
+});
+
+renderBooks();
