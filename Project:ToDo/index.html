@@ -22,20 +22,40 @@
         </div>
       </div>
 
-        <div class="display-todo">
+        <div class="display-todo" data-list>
             <div class="todo-item">
-            <h3 class="todo-title">Sample To Do</h3>
-            <p class="todo-description">This is a sample to do item. Edit or remove as needed.</p>
-            <div class="todo-actions">
+              <h3 class="todo-title">Sample To Do</h3>
+              <p class="todo-description">This is a sample to do item. Edit or remove as needed.</p>
+              <p class="todo-due-date"><strong>Due Date:</strong> <span>2024-06-30</span></p>
+              <div class="todo-actions">
               <button class="edit-btn">Edit</button>
               <button class="delete-btn">Delete</button>
               <select class="status-select">
-              <option value="pending">Pending</option>
-              <option value="doing">Doing</option>
-              <option value="complete">Complete</option>
+                <option value="pending">Pending</option>
+                <option value="doing">Doing</option>
+                <option value="complete">Complete</option>
               </select>
+              </div>
             </div>
+        </div>
+      </div>
+
+      <!-- Add To Do Dialog -->
+      <div id="add-todo-dialog" class="dialog" style="display:true">
+        <div class="dialog-content">
+          <h2>Add New To Do</h2>
+          <form id="add-todo-form" data-forms>
+            <label for="todo-title">Title:</label>
+            <input type="text" id="todo-title" name="title" required>
+            <label for="todo-description">Description:</label>
+            <textarea id="todo-description" name="description" required></textarea>
+            <label for="todo-due-date">Due Date:</label>
+            <input type="date" id="todo-due-date" name="due-date" required>
+            <div class="dialog-actions">
+              <button type="submit">Add</button>
+              <button type="button" id="cancel-add-todo">Cancel</button>
             </div>
+          </form>
         </div>
       </div>
   </main>
