@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style.css">
+  <script src="./index.js" defer></script>
+  <title>Project:To Do</title>
+</head>
+<body>
+  <main>
+    <h1>To Dos</h1>
+    <div class="todo-summary-container">
+      <h2>To Do Status:</h2>
+      <div class="status"  id="complete">Complete: </div>
+      <div class="status"  id="pending">Pending:</div>
+      <div class="status"  id="doing">Doing:</div>
+    </div>
+      <div class="to-do-container">
+        <div class="add-todo-btn">
+          <button class="add-btn">Add To Do</button>
+        </div>
+      </div>
+
+        <div class="display-todo">
+            <div class="todo-item">
+            <h3 class="todo-title">Sample To Do</h3>
+            <p class="todo-description">This is a sample to do item. Edit or remove as needed.</p>
+            <div class="todo-actions">
+              <button class="edit-btn">Edit</button>
+              <button class="delete-btn">Delete</button>
+              <select class="status-select">
+              <option value="pending">Pending</option>
+              <option value="doing">Doing</option>
+              <option value="complete">Complete</option>
+              </select>
+            </div>
+            </div>
+        </div>
+      </div>
+  </main>
+</body>
+</html>
