@@ -1,4 +1,8 @@
 const express_module = require('express');
+const authorRouter = require("./routes/authorRouter");
+const userRouter = require("./routes/userRouter");
+const messageRouter = require("./routes/messageRouter");
+
 const path = require("path");
 
 const server = express_module();
@@ -25,36 +29,10 @@ server.get("/contact", (req,res) =>{
   res.sendFile(path.join(__dirname,'public','contact-me.html'));
 })
 
-//routes
-server.get("/message{s}", (req,res)=>{
-  res.send("This route works for either 'message' or 'messages' ");
-})
-
-
-server.get("/message{s}/{*splat}/chat", (req,res)=>{
-  res.send("This route works for either messages/{anything}/chat or /message/chat")
-})
-
-server.get("/user/:userId", (req,res) =>{
-  res.send(`You have reached the call for User with the id of: ${req.params.userId}`)
-  console.log(req.params)
-  res.end();
-})
-
-
-server.get("/:userId/messages", (req,res) =>{
-  console.log(req.params);
-  res.json(req.params)
-  res.end();
-})
-
-
-server.get("/:userId/messages/:messageId", (req,res) =>{
-  console.log(req.params)
-  res.json(req.params)
-  res.end;
-})
-
+//
+server.use("/authors", authorRouter);
+server.use("/user{s}", userRouter);
+server.use("/message{s}",messageRouter);
 
 server.get("/{*splat}", (req,res)=>{
   res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
